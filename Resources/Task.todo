@@ -5,13 +5,13 @@ Map:
 	▪ Grid base
 Mechanic:
 	▪ Inventory: @doing
-		▪ Static inventory.
-		▪ Dice show in inventory.
-		▪ Show dice info when hover.
+		✓ Static inventory.
+		✓ Dice show in inventory.
+		✓ Show dice info when hover.
 		▪ Show dice option when click on it.
 		▪ Dice option to remove it.
-		▪ Dice option to change it inventory.
-		▪ Select multiple dice in inventory.
+		▪ Dice option to move in inventory.
+		✓ Select multiple dice in inventory.
 		▪ Dynamic iventory.
 	▪ Dice:
 		▪ Add action to dice.
@@ -26,7 +26,7 @@ Mechanic:
 		▪ Perform all the action has stacked.
 Entity:
 	▪ Enemy:
-		▪ Spawn:
+		✓ Spawn:
 			✓ Random amount
 			✓ Random position
 			✓ Weight system
