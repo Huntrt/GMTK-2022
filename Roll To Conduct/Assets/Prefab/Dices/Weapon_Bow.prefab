@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  action: 0
-  punish: 0
+  action: 2
+  punish: 1
   icon: {fileID: 7021449457718125206, guid: e9f249fb401bd7a45b814fe891af9f00, type: 3}
-  description: 
+  description: '<color=#7eff75>2 - 6: Increase damage dealt to the FURTHEST enemy
+    by the amount has rolled </color>
+
+
+    <color=#ff757e>1: Turn will be skip </color>'

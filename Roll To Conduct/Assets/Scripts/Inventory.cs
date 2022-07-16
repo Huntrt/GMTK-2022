@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -6,22 +7,10 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
 
-	//% TESTING
-
+	//%
 	public DiceType diceWanted;
-	void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			AddDice(diceWanted);
-		}
-	}
-
-	//% TESTING
 
 	public int slotAmount;
-	[SerializeField] bool GetUI;
-	[SerializeField] Transform inventoryInterface;
 	public List<DiceCore> dices;
 	public List<Slot> slots;
 	DiceManager dm;
@@ -38,6 +27,34 @@ public class Inventory : MonoBehaviour
 		//Get the dice manager
 		dm = DiceManager.i;
 	}
+
+	void Update()
+	{
+		//% 
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			AddDice(diceWanted);
+		}
+	}
+
+	public void AddDice(DiceType type)
+	{
+		//Stop if there no slot left in inventory
+		if(slots.Count >= slotAmount) {print("Full inventory"); return;}
+		//Add an new empty slot
+		slots.Add(new Slot());
+		//Create an new dice object with given type
+		DiceCore createdDice = Instantiate(dm.GetDice(type));
+		//Set created dice as child of the manager
+		createdDice.transform.SetParent(dm.transform);
+		//Add the created to dice to it list
+		dices.Add(createdDice);
+		//Assign the newly created dice to slot
+		AssignSlot(slots.Count-1, createdDice);
+	}
+
+#region Interface
+	[SerializeField] Transform inventoryInterface;
 
 	public void AssignSlot(int slotIndex, DiceCore dice)
 	{
@@ -56,19 +73,26 @@ public class Inventory : MonoBehaviour
 		slot.icon.sprite = dices[slotIndex].icon;
 	}
 
-	public void AddDice(DiceType type)
+	public InfoPanel infoPanel; [System.Serializable] public class InfoPanel
 	{
-		//Stop if there no slot left in inventory
-		if(slots.Count >= slotAmount) {print("Full inventory"); return;}
-		//Add an new empty slot
-		slots.Add(new Slot());
-		//Create an new dice object with given type
-		DiceCore createdDice = Instantiate(dm.GetDice(type));
-		//Set created dice as child of the manager
-		createdDice.transform.SetParent(dm.transform);
-		//Add the created to dice to it list
-		dices.Add(createdDice);
-		//Assign the newly created dice to slot
-		AssignSlot(slots.Count-1, createdDice);
+		public GameObject panel;
+		public TextMeshProUGUI name, description;
 	}
+
+	public void OnSlotEnter(Transform slotTF)
+	{
+		//Get the index of slot given
+		int index = slotTF.GetSiblingIndex();
+		infoPanel.name.text = dices[index].type.ToString();
+		infoPanel.description.text = dices[index].description;
+		infoPanel.panel.SetActive(true);
+	}
+
+	public void OnSlotExit(Transform slotTF)
+	{
+		//Get the index of slot given
+		int index = slotTF.GetSiblingIndex();
+		infoPanel.panel.SetActive(false);
+	}
+#endregion
 }

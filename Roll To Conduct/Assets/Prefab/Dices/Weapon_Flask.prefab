@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 7
-  action: 0
-  punish: 0
+  action: 2
+  punish: 1
   icon: {fileID: -7343860702648896561, guid: e9f249fb401bd7a45b814fe891af9f00, type: 3}
-  description: 
+  description: '<color=#7eff75>2 - 6: Heal player with the amount has roll </color>
+
+
+    <color=#ff757e>1:
+    Take 1% total heath as damage</color>'
