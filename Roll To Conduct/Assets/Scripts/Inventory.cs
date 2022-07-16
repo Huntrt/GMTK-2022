@@ -20,14 +20,10 @@ public class Inventory : MonoBehaviour
 	{
 		//Get the dice manager
 		dm = DiceManager.i;
-	}
-
-	void Update()
-	{
 		//% Testing recive weapon
-		if(Input.GetKeyDown(KeyCode.Space)) AddDice((DiceType)Random.Range(0,8));
+		for (int i = 0; i < 10; i++) AddDice((DiceType)Random.Range(0,8));
 	}
-
+	
 	public void AddDice(DiceType type)
 	{
 		//Stop if there no slot left in inventory
@@ -95,6 +91,8 @@ public class Inventory : MonoBehaviour
 		int index = slotTF.GetSiblingIndex();
 		//Save the combat manager
 		Combat c = Combat.i;
+		//No longer allow to assign if has begin roll
+		if(c.rolled) return;
 		//Get the dice core of given index
 		DiceCore dice = dices[index];
 		//Get the color state of button

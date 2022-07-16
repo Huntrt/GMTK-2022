@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 public class DiceCore : MonoBehaviour
 {
@@ -8,9 +9,14 @@ public class DiceCore : MonoBehaviour
 	[Header("UI")]
 	public Sprite icon;
 	[TextArea(5,20)] public string description;
+	public delegate void Rolled(int roll);
+	public Rolled onAction, onPunish;
 
 	public int Roll()
 	{
-		return UnityEngine.Random.Range(0,6);
+		int result = UnityEngine.Random.Range(1,7);	
+		if(result >= action) onAction?.Invoke(result);
+		else onPunish?.Invoke(result);
+		return result;
 	}
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 139133867661195598}
-  - component: {fileID: 7420990979520648162}
+  - component: {fileID: -8135850835289671332}
   m_Layer: 0
   m_Name: Weapon_Crossbow
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7420990979520648162
+--- !u!114 &-8135850835289671332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2889345475889862268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e0bff223c2615e4fa24d2791e7ce7a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 046d1ff0fd950994d8204b9287b16cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
@@ -53,3 +53,6 @@ MonoBehaviour:
 
     <color=#ff757e>1-2:
     Turn will be skip </color>'
+  stackedDamage: 0
+  targetMode: 1
+  stackMode: 1
