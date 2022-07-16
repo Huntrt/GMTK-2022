@@ -1,0 +1,27 @@
+# ROLL TO CONDUCT 
+
+Map:
+	▪ An simple square room
+	▪ Grid base*
+Mechanic:
+	▪ Inventory:
+		▪ Static inventory.
+		▪ Dice show in inventory.
+		▪ Show dice info when hover.
+		▪ Show dice option when click on it.
+		▪ Dice option to remove it.
+		▪ Dice option to change it inventory.
+		▪ Select multiple dice in inventory.
+		▪ Dynamic iventory.
+	▪ Dice:
+		▪ Add action to dice.
+		▪ Add punishment to dice.
+	▪ Rolling:
+		▪ Roll an single dice.
+		▪ Roll multiple dice.
+		▪ Stack dice result for action.
+		▪ Punish if fail result.
+	▪ Action:
+		▪ Listen and store what player has roll.
+		▪ Perform all the action has stacked.
+Entity:
