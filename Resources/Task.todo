@@ -2,9 +2,9 @@
 
 Map:
 	▪ An simple square room
-	▪ Grid base*
+	▪ Grid base
 Mechanic:
-	▪ Inventory:
+	▪ Inventory: @doing
 		▪ Static inventory.
 		▪ Dice show in inventory.
 		▪ Show dice info when hover.
@@ -25,3 +25,10 @@ Mechanic:
 		▪ Listen and store what player has roll.
 		▪ Perform all the action has stacked.
 Entity:
+	▪ Enemy:
+		▪ Spawn:
+			✓ Random amount
+			✓ Random position
+			✓ Weight system
+			✓ Scale with difficulty
+			▪ Random in grid

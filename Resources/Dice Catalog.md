@@ -13,7 +13,7 @@
 	Stack: +roll amount
 	Punishment (1): end turn.
 
-# Bottle
+# Pellet
 	Action (2-6): Attack random enemy with the amount has roll.
 	Stack: +roll amount
 	Punishment (1): end turn.
