@@ -56,5 +56,40 @@ public class EnemySpawner : MonoBehaviour
 				else {chance -= scaling;}	
 			}
 		}
+		//Set enemy order from nearest to furthest
+		SetEnemyOrder();
+	}
+
+	void SetEnemyOrder()
+	{
+		List<Enemy> tempEnemy = new List<Enemy>(em.enemies);
+		//Go through all the enemy
+		for (int e = 0; e < tempEnemy.Count; e++)
+		{
+			//The nearest enemy index
+			int nearestEnemy = -1;
+			//Save the latest nearest position
+			float nearest = 10000;
+			//Go through all the enemy again but start at this enemy
+			for (int n = 0; n < em.enemies.Count; n++)
+			{
+				//Get distance between this temp nemy and player
+				float distance = Vector2.Distance(Player.i.transform.position,em.enemies[n].transform.position);
+				//If the an new nearest distance
+				if(distance < nearest)
+				{
+					//Overwrite current nearest distance
+					nearest = distance;
+					//Nearest enemy are now in this index
+					nearestEnemy = n;
+				}
+			}
+			//This temp enemy are now the use nearest enemy in it own list
+			tempEnemy[e] = em.enemies[nearestEnemy];
+			//Remove the nearst enemy from it list
+			em.enemies.RemoveAt(nearestEnemy);
+		}
+		//Overwrite enemy with temp enemies
+		em.enemies = tempEnemy;
 	}
 }
