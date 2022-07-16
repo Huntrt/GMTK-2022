@@ -1,7 +1,7 @@
 # ROLL TO CONDUCT 
 
 Map:
-	▪ An simple square room
+	✓ An simple square room
 	▪ Grid base
 Mechanic:
 	▪ Inventory: @doing
@@ -32,3 +32,8 @@ Entity:
 			✓ Weight system
 			✓ Scale with difficulty
 			▪ Random in grid
+		▪ Action:
+			▪ Attack when full heath
+			▪ Denfensive when low heath
+			▪ Support allies
+			▪ Make it own dice for action
