@@ -1,0 +1,29 @@
+[Key Manager]
+	Info: Handle the process of assign key and storing them (don't support external save yet).
+
+	Set: Add key manager to any wanted gameobject (preferably game object that don't destroy on load) and set:
+		- [waitingMessage] = what [keyDisplay] will show when it waiting for assign an new key.
+
+	Usage: Under "/// Added key here... ///" in script add or remove any key variable you wanted.
+
+[Key Assinger]
+	Info: Handle the process of calling manager for assinging keycode base on action it has.
+
+	Set: Add key assigner to any object and set:
+		- [action] = The action are same (case sensitive) as the keycode variable name that has added in manager.
+			Example: - When "action = jump" then inside key manager need to has the keycode variable name "jump".
+					 - Doing this assigner will change the keycode variable of "jump".
+		- [keyDisplay] = the text will display what keycode current use.
+		- [button] = button that will call for assigning key when press.
+		
+	{autoSetup}
+		- An quick way too setup all the variable above
+		- Using this the [Key Assinger] need to add on the [button]
+		- The [button] need to has the [keyDisplay] as children
+		Set:
+			Manual:
+			- [keyDisplayChildIndex] = Which child are the text for [keyDisplay].
+			Auto:
+			- [button] = the button of object [Key Assinger] script on.
+			- [action] = the name of object [Key Assinger] script on.
+
