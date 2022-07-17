@@ -34,8 +34,8 @@ public class Combat : MonoBehaviour
 
 	public void QueueDice(DiceCore dice)
 	{
-		//Maximum queue allow are 40
-		if(queues.Count >= 30) {print("Maxxed Dice Queue"); return;}
+		//Maximum queue allow are 10
+		if(queues.Count >= 10) {print("Maxxed Dice Queue"); return;}
 		//Get the UI of queue index
 		Transform queueUI = queueInterface.GetChild(queues.Count);
 		//Add given dice to queue
