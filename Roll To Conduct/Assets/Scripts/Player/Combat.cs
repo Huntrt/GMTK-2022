@@ -27,11 +27,8 @@ public class Combat : MonoBehaviour
 
 	void Update()
 	{
-		//! Custom input
-		if(Input.GetKeyDown(KeyCode.R))
-		{
-			RollDice();
-		}
+		if(Input.GetKeyDown(KeyManager.i.continueRoll)) RollDice();
+		if(Input.GetKeyDown(KeyManager.i.conductAction)) PlayerEndTurn(true);
 	}
 
 	public void QueueDice(DiceCore dice)
@@ -112,6 +109,11 @@ public class Combat : MonoBehaviour
 			rolled = false;
 			//Active all enemy
 			for (int e = 0; e < enemies.Count; e++) {enemies[e].gameObject.SetActive(true);}
+			//Deactive all the dice
+			for (int q = 0; q < queueInterface.childCount; q++)
+			{
+				queueInterface.GetChild(q).GetChild(2).gameObject.SetActive(false);
+			}
 			//Hide player hurt couter
 			Player.i.hurtCounter.transform.parent.gameObject.SetActive(false);
 			turnIndicator.position = (Vector2)Player.i.transform.position + turnIndicatorOffset;

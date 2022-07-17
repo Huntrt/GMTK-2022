@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
 		public Image icon;
 		public Button button;
 	}
+	[SerializeField] Button deleteToggle;
 
 	void OnEnable()
 	{
@@ -67,6 +68,11 @@ public class Inventory : MonoBehaviour
 	public SlotColor slotColor; [System.Serializable] public class SlotColor
 	{
 		public Color none, use, queued, cancel, warning, delete;
+	}
+
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyManager.i.deleteDice)) ToggleDeleteMode(deleteToggle);
 	}
 
 	public void AssignSlot(int slotIndex, DiceCore dice)

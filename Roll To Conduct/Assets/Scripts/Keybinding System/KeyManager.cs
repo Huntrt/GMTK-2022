@@ -11,8 +11,7 @@ public class KeyManager : MonoBehaviour
 	static KeyManager _i;  public static KeyManager i 
 	{get {if(_i==null) {_i = GameObject.FindObjectOfType<KeyManager>();} return _i;}} 
 
-	/// Added key here... ///
-	public KeyCode Up, Down, Left, Right;
+	public KeyCode continueRoll, conductAction, deleteDice;
 	
 	public void StartAssign(KeyAssigner assigner)
 	{
