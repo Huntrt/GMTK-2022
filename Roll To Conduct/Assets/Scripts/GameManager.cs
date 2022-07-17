@@ -2,7 +2,6 @@
 
 public class GameManager : MonoBehaviour
 {
-	public AudioManager audioM;
 	public static GameManager i;
 
 	void Awake()
