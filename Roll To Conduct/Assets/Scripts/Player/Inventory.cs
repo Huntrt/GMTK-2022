@@ -21,8 +21,13 @@ public class Inventory : MonoBehaviour
 	{
 		//Get the dice manager
 		dm = DiceManager.i;
-		//% Testing recive weapon
-		for (int i = 0; i < 10; i++) AddDice((DiceType)Random.Range(0,8));
+	}
+
+	//Begin with 2 basic weapon
+	void Start()
+	{
+		AddDice(DiceType.knife);
+		AddDice(DiceType.flask);
 	}
 
 	public void AddDice(DiceType type)

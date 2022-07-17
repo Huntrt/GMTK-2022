@@ -10,22 +10,17 @@ public class EnemySpawner : MonoBehaviour
 		public int difficultyScaling;
 	}
 	public List<SpawnInfo> spawns;
-	//% Testing
 	[SerializeField] Transform spawnZone;
 	EnemyManager em;
 
 	void OnEnable() {em = EnemyManager.i;}
 
-	//% Testing
-	void Start()
+	public void SpawnDecide(int extraAmount = 0)
 	{
-		SpawnDecide();
-	}
-
-	public void SpawnDecide()
-	{
-		//Get the amount of enemy will spawn using inital amount scale with difficulty
-		float amount = Random.Range(1f, initialAmount + (initialAmount * em.difficulty));
+		//Get total amount of extra and initial
+		float totalAmount = initialAmount + extraAmount;
+		//Get the amount of enemy will spawn using total amount scale with difficulty
+		float amount = Random.Range(1f, totalAmount + (totalAmount * em.difficulty));
 		//For every time need to spawn enemy
 		for (int e = 0; e < amount; e++)
 		{

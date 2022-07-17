@@ -666,8 +666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heath: {fileID: 6628296996767393924}
-  value: 5
-  rollDelay: 0.4
+  dropRate: 30
+  rollDelay: 0.1
   stackedDamage: 0
   damageScaling: 0.4
   dices:

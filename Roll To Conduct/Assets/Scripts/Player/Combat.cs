@@ -134,13 +134,9 @@ public class Combat : MonoBehaviour
 			{
 				//Deatice all the hurt display of enemy
 				enemies[e].totalHurtDisplay.transform.parent.gameObject.SetActive(false);
-				//Deactive all of them
-				enemies[e].gameObject.SetActive(false);
 			}
 			//The enemy in this turn
 			Enemy turn = enemies[order-1];
-			//Only actice the enemy got turn
-			turn.gameObject.SetActive(true);
 			//Move indicator to the enemy got turn
 			turnIndicator.position = (Vector2)turn.transform.position + turnIndicatorOffset;
 			//Begin turn of the enemy at given order

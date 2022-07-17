@@ -6,7 +6,7 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
 	public Heath heath;
-    public float value;
+    public float dropRate;
 	[SerializeField] float rollDelay;
 	int turnOrder;
 	[Header("Stats")]
@@ -181,8 +181,11 @@ public class Enemy : MonoBehaviour
 
 	void Die()
 	{
+		em.enemies.Remove(this);
+		if(Random.Range(0f,100) <= dropRate) ItemLoot.i.DropItem();
+		//Has clear all enemy
+		if(em.enemies.Count <= 0) em.onCleared?.Invoke();
 		Destroy(attackInstance);
-		EnemyManager.i.enemies.Remove(this);
 	}
 #endregion
 }

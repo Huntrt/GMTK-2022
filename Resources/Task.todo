@@ -3,13 +3,13 @@
 Map:
 	✓ An simple square room
 	X Grid base
-	▪ Spawn 3 door when killed all enemy
+	✓ Spawn door when killed all enemy
 	✓ Enemy Room
-	▪ Horde Room
-	▪ Shop
-		▪ Randomize shop
-		▪ Money scaling
-		▪ Sell
+	✓ Horde Room
+	X Shop
+		X Randomize shop
+		X Money scaling
+		X Sell
 Mechanic:
 	✓ Inventory:
 		✓ Static inventory.
@@ -45,3 +45,5 @@ Entity:
 			X Support allies
 			✓ Attack when think good enough.
 			✓ Roll dice as munch as randomized.
+		▪ Drop item
+		▪ Item drop table

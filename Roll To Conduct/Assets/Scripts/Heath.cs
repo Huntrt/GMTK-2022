@@ -11,7 +11,7 @@ public class Heath : MonoBehaviour
 	public float flashDuration;
 	public Color hurtFlash, healflash; Color defaultColor;
 
-	void OnEnable()
+	void Start()
 	{
 		defaultColor = render.color;
 		heath = maxHeath;
@@ -24,7 +24,17 @@ public class Heath : MonoBehaviour
 		FlashColor(hurtFlash);
 		heathCounter.text = heath + " / " + maxHeath; 
 		onHurt?.Invoke();
-		if(heath <= 0) {onDie?.Invoke(); Destroy(gameObject);}
+		if(heath <= 0) 
+		{
+			onDie?.Invoke();
+			//Onky for player
+			if(gameObject.name == "Player")
+			{
+				gameObject.SetActive(false);
+				return;
+			}
+			Destroy(gameObject);
+		}
 	}
 
 	public void GetHeal(int heal)
