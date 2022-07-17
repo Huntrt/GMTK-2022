@@ -15,8 +15,14 @@ public class DiceCore : MonoBehaviour
 	public int Roll()
 	{
 		int result = UnityEngine.Random.Range(1,7);	
-		if(result >= action) onAction?.Invoke(result);
-		else onPunish?.Invoke(result);
+		if(result >= action) 
+		{
+			onAction?.Invoke(result);
+		}
+		else
+		{
+			onPunish?.Invoke(result);
+		}
 		return result;
 	}
 }

@@ -119,7 +119,7 @@ public class Inventory : MonoBehaviour
 			//Remove dice from queue
 			c.UnqueueDice(dice);
 			//Set back to default slot colot
-			SetSlotColor(index, slotColor.use, slotColor.none);
+			SetSlotColor(index, slotColor.none, slotColor.use);
 			return;
 		}
 		//Queue the dice has get

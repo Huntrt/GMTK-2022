@@ -33,13 +33,13 @@ public class Enemy : MonoBehaviour
 	{
 		playerTF = Player.i.transform;
 		em = EnemyManager.i;
-		Combat.i.onEndTurn += GetAllHurt;
+		Combat.i.playerAttack += GetAllHurt;
 		heath.onDie += Die;
 	}
 
 	void OnDisable()
 	{
-		if(Combat.i != null) Combat.i.onEndTurn -= GetAllHurt;
+		if(Combat.i != null) Combat.i.playerAttack -= GetAllHurt;
 		if(heath != null) heath.onDie -= Die;
 	}
 
@@ -147,7 +147,7 @@ public class Enemy : MonoBehaviour
 		for (int d = 0; d < dices.Length; d++) {dices[d].gameObject.SetActive(false);}
 		//Reset greed and inital greed
 		greed = intitialGreed; stackedDamage = 0;
-		Combat.i.SwitchTurn(turnOrder+1);
+		StartCoroutine(Combat.i.SwitchTurn(turnOrder+1));
 	}
 
 #region Take Damage

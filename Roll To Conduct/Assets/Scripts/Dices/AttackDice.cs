@@ -19,13 +19,13 @@ public class AttackDice : DiceCore
 		cm = Combat.i;
 		onAction += Attack;
 		onPunish += Failed;
-		cm.onEndTurn += ResetStats;
+		cm.playerAttack += ResetStats;
 	}
 	void OnDisable()
 	{
 		onAction -= Attack;
 		onPunish -= Failed;
-		cm.onEndTurn -= ResetStats;
+		cm.playerAttack -= ResetStats;
 	}
 
 	void Attack(int roll)
@@ -59,7 +59,8 @@ public class AttackDice : DiceCore
 
 	void Failed(int roll)
 	{
-
+		//End player turn
+		Combat.i.PlayerEndTurn(false);
 	}
 
 	void ResetStats()

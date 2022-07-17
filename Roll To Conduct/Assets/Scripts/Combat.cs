@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
@@ -10,7 +11,7 @@ public class Combat : MonoBehaviour
 	public List<DiceCore> queues;
 	public Transform queueInterface;
 	public bool rolled;
-	public Action onEndTurn;
+	public Action playerAttack;
 	public Sprite[] diceIcon;
 	EnemyManager em;
 	[SerializeField] Vector2 turnIndicatorOffset;
@@ -69,47 +70,46 @@ public class Combat : MonoBehaviour
 
 	public void RollDice()
 	{
-		if(queues.Count <= 0) return;
+		//If queue are out of count or it not player turn
+		if(queues.Count <= 0 || turn != 0) return;
 		rolled = true;
-		//For eavery dice in queue
+		//For every dice in queue
 		for (int d = 0; d < queues.Count; d++)
 		{
 			int rolled = queues[d].Roll();
 			GameObject diceDisplay = queueInterface.GetChild(d).GetChild(2).gameObject;
+			//Stop if queue rolled into punish
+			if(rolled <= queues[d].punish) 
+			{
+				//? Punish effect
+			}
 			//Update the dice icon of this queue's interfact to be the number has roll
 			diceDisplay.GetComponent<Image>().sprite = diceIcon[rolled-1];
 			diceDisplay.SetActive(true);
 		}
 	}
 
-	public void ClearCombatQueue()
+	public void PlayerEndTurn(bool successful)
 	{
-		queues.Clear();
-		for (int q = 0; q < queueInterface.childCount; q++)
-		{
-			queueInterface.GetChild(q).gameObject.SetActive(false);
-		}
+		//Stop if not player turn
+		if(turn != 0) return;
+		//Nobody turn
+		turn = -1;
+		//Only allow player to attack if successful end turn
+		if(successful) {playerAttack?.Invoke();}
+		//Begin switch turn to the frist enemy with slight delay
+		StartCoroutine(SwitchTurn(1,1));
 	}
 
-	public void PlayerEndTurn()
+	public IEnumerator SwitchTurn(int order, float delay = 0)
 	{
-		onEndTurn?.Invoke();
-		rolled = false;
-		//Deactive all the dice
-		for (int q = 0; q < queueInterface.childCount; q++)
-		{
-			queueInterface.GetChild(q).GetChild(2).gameObject.SetActive(false);
-		}
-		//Begin switch turn to the frist enemy
-		SwitchTurn(1);
-	}
-
-	public void SwitchTurn(int order)
-	{
+		yield return new WaitForSeconds(delay);
+		turn = order;
 		List<Enemy> enemies = EnemyManager.i.enemies;
 		//? Player turn
 		if(order == 0)
 		{
+			rolled = false;
 			//Active all enemy
 			for (int e = 0; e < enemies.Count; e++) {enemies[e].gameObject.SetActive(true);}
 			//Hide player hurt couter
@@ -124,8 +124,8 @@ public class Combat : MonoBehaviour
 			//If the order are past the last enemy
 			if(order > enemies.Count)
 			{
-				//back to the player turn
-				SwitchTurn(0); return;
+				//Back to the player turn
+				StartCoroutine(SwitchTurn(0)); yield break;
 			}
 			//Go through all enemy
 			for (int e = 0; e < enemies.Count; e++) 
