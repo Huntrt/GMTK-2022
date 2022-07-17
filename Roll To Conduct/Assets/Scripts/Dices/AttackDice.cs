@@ -59,6 +59,7 @@ public class AttackDice : DiceCore
 
 	void Failed(int roll)
 	{
+		ResetStats();
 		//End player turn
 		Combat.i.PlayerEndTurn(false);
 	}

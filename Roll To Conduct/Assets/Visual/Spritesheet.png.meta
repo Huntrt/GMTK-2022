@@ -131,6 +131,12 @@ TextureImporter:
   - first:
       213: -1183731428016168853
     second: Enemy_Ghost_Attack
+  - first:
+      213: 2401752518082830216
+    second: Icon_Heal
+  - first:
+      213: 3411045427079179176
+    second: Icon_Shield
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1126,6 +1132,48 @@ TextureImporter:
       bones: []
       spriteID: b6061a3b98a829fe0800000000000000
       internalID: -1183731428016168853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Heal
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 260
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88f1abea03db45120800000000000000
+      internalID: 2401752518082830216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_Shield
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 260
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ab66c15eb7765f20800000000000000
+      internalID: 3411045427079179176
       vertices: []
       indices: 
       edges: []

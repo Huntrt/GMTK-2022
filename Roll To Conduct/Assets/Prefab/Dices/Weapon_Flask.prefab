@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1505230067316349245}
-  - component: {fileID: 5661425044628520395}
+  - component: {fileID: 2223515855792901313}
   m_Layer: 0
   m_Name: Weapon_Flask
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5661425044628520395
+--- !u!114 &2223515855792901313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,15 +40,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5022130275968763339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e0bff223c2615e4fa24d2791e7ce7a0, type: 3}
+  m_Script: {fileID: 11500000, guid: f37b0891f3347d647ac02e476ac59eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 7
   action: 2
   punish: 1
   icon: {fileID: -7343860702648896561, guid: e9f249fb401bd7a45b814fe891af9f00, type: 3}
-  description: '<color=#7eff75>2 - 6: Heal player with the amount has roll </color>
+  description: '<color=#7eff75>2 - 6: Heal 1 every roll</color>
 
 
     <color=#ff757e>1:
-    Take 1% total heath as damage</color>'
+    Take half of the heal amount has stack as damage, then end turn</color>'
+  stackedHeal: 0
+  stackMode: 0

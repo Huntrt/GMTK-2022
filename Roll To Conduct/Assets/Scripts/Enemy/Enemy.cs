@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
 			dices[d].sprite = Combat.i.diceIcon[result-1];
 			dices[d].gameObject.SetActive(true);
 			//Return as failed if result are 1
-			if(result == 1) return -1;
+			if(result == 1) {heath.PlayFail() ;return -1;}
 			//Increase total result will return later
 			totalResult += result;
 		}

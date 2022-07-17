@@ -13,6 +13,7 @@ public class Combat : MonoBehaviour
 	public bool rolled;
 	public Action playerAttack;
 	public Sprite[] diceIcon;
+	public ParticleSystem killEffect;
 	EnemyManager em;
 	[SerializeField] Vector2 turnIndicatorOffset;
 	[SerializeField] Transform turnIndicator;
@@ -75,11 +76,8 @@ public class Combat : MonoBehaviour
 		{
 			int rolled = queues[d].Roll();
 			GameObject diceDisplay = queueInterface.GetChild(d).GetChild(2).gameObject;
-			//Stop if queue rolled into punish
-			if(rolled <= queues[d].punish) 
-			{
-				//? Punish effect
-			}
+			//Play fil effect if queue rolled into punish
+			if(rolled <= queues[d].punish) Player.i.heath.PlayFail();
 			//Update the dice icon of this queue's interfact to be the number has roll
 			diceDisplay.GetComponent<Image>().sprite = diceIcon[rolled-1];
 			diceDisplay.SetActive(true);
@@ -114,8 +112,12 @@ public class Combat : MonoBehaviour
 			{
 				queueInterface.GetChild(q).GetChild(2).gameObject.SetActive(false);
 			}
-			//Hide player hurt couter
 			Player.i.hurtCounter.transform.parent.gameObject.SetActive(false);
+			Player.i.healCounter.transform.parent.gameObject.SetActive(false);
+			Player.i.shieldCounter.transform.parent.gameObject.SetActive(false);
+			Player.i.hurtCounter.text = "";
+			Player.i.healCounter.text = "0";
+			Player.i.shieldCounter.text = "0";
 			turnIndicator.position = (Vector2)Player.i.transform.position + turnIndicatorOffset;
 		}
 		//? Enemy turn

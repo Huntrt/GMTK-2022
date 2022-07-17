@@ -10,6 +10,7 @@ public class Heath : MonoBehaviour
 	public SpriteRenderer render;
 	public float flashDuration;
 	public Color hurtFlash, healflash; Color defaultColor;
+	public ParticleSystem hurtEffect, healEffect, failEffect;
 
 	void Start()
 	{
@@ -22,34 +23,46 @@ public class Heath : MonoBehaviour
 	{
 		heath -= damage;
 		FlashColor(hurtFlash);
+		hurtEffect.Play();
 		heathCounter.text = heath + " / " + maxHeath; 
 		onHurt?.Invoke();
 		if(heath <= 0) 
 		{
 			onDie?.Invoke();
-			//Onky for player
+			//Only for player
 			if(gameObject.name == "Player")
 			{
 				gameObject.SetActive(false);
+				Player.i.gameOverPanel.SetActive(true);
 				return;
 			}
+			//Play the kill effect
+			Combat.i.killEffect.transform.position = transform.position;
+			Combat.i.killEffect.Play();
 			Destroy(gameObject);
 		}
 	}
 
 	public void GetHeal(int heal)
 	{
+		if(heal <= 0) return;
 		heath += heal;
+		if(heath >= maxHeath) {heath = maxHeath;}
 		FlashColor(healflash);
+		healEffect.Play();
 		heathCounter.text = heath + " / " + maxHeath; 
 		onHeal?.Invoke();
-		if(heath >= maxHeath) {heath = maxHeath;}
 	}
 
 	void FlashColor(Color color)
 	{
 		CancelInvoke("ClearFlash");
 		render.color = color; Invoke("ClearFlash", flashDuration);
+	}
+
+	public void PlayFail()
+	{
+		failEffect.Play();
 	}
 
 	void ClearFlash() {render.color = defaultColor;}
