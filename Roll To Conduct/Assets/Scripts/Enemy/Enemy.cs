@@ -19,7 +19,6 @@ public class Enemy : MonoBehaviour
 	[SerializeField] Sprite attackSprite;
 	[SerializeField] float attackVelocity;
 	[Header("Take Damage")]
-	public List<int> hurtQueue = new List<int>();
 	public int totalHurt;
 	public TextMeshProUGUI totalHurtDisplay;
 	Transform playerTF; EnemyManager em;
@@ -154,13 +153,11 @@ public class Enemy : MonoBehaviour
 	public void AddHurt(int damage)
 	{
 		UpdateHurtTake(true, totalHurt.ToString());
-		hurtQueue.Add(damage);
 		totalHurt += damage;
 	}
 
 	public void ClearHurt()
 	{
-		hurtQueue.Clear();
 		totalHurt = 0;
 		UpdateHurtTake(false, "");
 	}

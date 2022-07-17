@@ -105,8 +105,11 @@ public class Combat : MonoBehaviour
 		if(order == 0)
 		{
 			rolled = false;
-			//Active all enemy
-			for (int e = 0; e < enemies.Count; e++) {enemies[e].gameObject.SetActive(true);}
+			//Clear the hurt amount of all enemy
+			for (int e = 0; e < enemies.Count; e++) 
+			{
+				enemies[e].totalHurt = 0; enemies[e].totalHurtDisplay.text = "0";
+			}
 			//Deactive all the dice
 			for (int q = 0; q < queueInterface.childCount; q++)
 			{
