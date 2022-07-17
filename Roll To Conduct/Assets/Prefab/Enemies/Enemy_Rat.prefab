@@ -530,20 +530,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heath: {fileID: 96811943206841508}
-  dropRate: 25
+  dropRate: 35
   rollDelay: 0.1
   stackedDamage: 0
   damageScaling: 0.2
   dices:
   - {fileID: 1542704595545454353}
-  intitialGreed: 20
-  greedGrowth: 0.4
+  intitialGreed: 10
+  greedGrowth: 0.5
   attackPrefab: {fileID: 8109511373632847756, guid: b67f7a7757b5a0f48a81b5d70f0c8fa5,
     type: 3}
   attackSprite: {fileID: 9155231472630613657, guid: e9f249fb401bd7a45b814fe891af9f00,
     type: 3}
   attackVelocity: 20
-  hurtQueue: 
   totalHurt: 0
   totalHurtDisplay: {fileID: 8716984480382461810}
 --- !u!212 &6191973193303739382

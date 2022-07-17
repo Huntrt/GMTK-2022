@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heath: {fileID: 1870275323769448915}
-  dropRate: 30
+  dropRate: 40
   rollDelay: 0.1
   stackedDamage: 0
   damageScaling: 0.2
@@ -221,7 +221,6 @@ MonoBehaviour:
   attackSprite: {fileID: -6448914520323044390, guid: e9f249fb401bd7a45b814fe891af9f00,
     type: 3}
   attackVelocity: 20
-  hurtQueue: 
   totalHurt: 0
   totalHurtDisplay: {fileID: 2662640599314539018}
 --- !u!212 &8286818009803481894

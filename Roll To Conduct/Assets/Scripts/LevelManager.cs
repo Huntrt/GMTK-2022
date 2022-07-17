@@ -10,7 +10,8 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] LevelInfo[] levels;
 	[SerializeField] float shopRate;
 	[SerializeField] PathOption[] pathOption;
-	public TMPro.TextMeshProUGUI pathName, pathDescription;
+
+	public TMPro.TextMeshProUGUI pathName, pathDescription, levelCounter;
 	[System.Serializable] public class LevelInfo
 	{
 		public LevelType type;
@@ -70,6 +71,7 @@ public class LevelManager : MonoBehaviour
 	public void EnterPath(int index)
 	{
 		levelCount++;
+		levelCounter.text = "Level " + levelCount;
 		EnemyManager.i.IncreaseDifficulty();
 		EnemySpawner spawner = EnemyManager.i.spawner;
 		if(pathOption[index].type == LevelType.enemy)
