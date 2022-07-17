@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
 		//% Testing recive weapon
 		for (int i = 0; i < 10; i++) AddDice((DiceType)Random.Range(0,8));
 	}
-	
+
 	public void AddDice(DiceType type)
 	{
 		//Stop if there no slot left in inventory
@@ -40,6 +40,22 @@ public class Inventory : MonoBehaviour
 		AssignSlot(slots.Count-1, createdDice);
 	}
 
+	public void DeleteDice(int index)
+	{
+		//Deactive the last slot in inventory
+		inventoryInterface.GetChild(slots.Count-1).gameObject.SetActive(false);
+		//Unqueue then destroy the dice at given index
+		Combat.i.UnqueueDice(dices[index]); Destroy(dices[index].gameObject);
+		//Remove the last slots
+		slots.RemoveAt(slots.Count-1);
+		dices.RemoveAt(index);
+		for (int s = 0; s < slots.Count; s++)
+		{
+			slots[s].dice = dices[s];
+			slots[s].icon.sprite = dices[s].icon;
+		}
+	}
+
 #region Interface
 	[SerializeField] Transform inventoryInterface;
 	public InfoPanel infoPanel; [System.Serializable] public class InfoPanel
@@ -50,7 +66,7 @@ public class Inventory : MonoBehaviour
 
 	public SlotColor slotColor; [System.Serializable] public class SlotColor
 	{
-		public Color none, use, queued, cancel;
+		public Color none, use, queued, cancel, warning, delete;
 	}
 
 	public void AssignSlot(int slotIndex, DiceCore dice)
@@ -91,27 +107,66 @@ public class Inventory : MonoBehaviour
 		int index = slotTF.GetSiblingIndex();
 		//Save the combat manager
 		Combat c = Combat.i;
-		//No longer allow to assign if has begin roll
+		//Stop if has begin rolled
 		if(c.rolled) return;
+		//Delete dice at given index
+		if(deleteMode) {DeleteDice(index); return;}
 		//Get the dice core of given index
 		DiceCore dice = dices[index];
-		//Get the color state of button
-		ColorBlock colors = slots[index].button.colors;
 		//If get dice are already queue
 		if(c.queues.Contains(dice)) 
 		{
 			//Remove dice from queue
 			c.UnqueueDice(dice);
-			colors.highlightedColor = slotColor.use; 
-			colors.normalColor = slotColor.none; 
-			slots[index].button.colors = colors;
+			//Set back to default slot colot
+			SetSlotColor(index, slotColor.use, slotColor.none);
 			return;
 		}
 		//Queue the dice has get
 		c.QueueDice(dice);
-		colors.normalColor = slotColor.queued; 
-		colors.highlightedColor = slotColor.cancel; 
+		//Set to queued slot color
+		SetSlotColor(index, slotColor.queued, slotColor.cancel);
+	}
+
+	void SetSlotColor(int index, Color normal, Color highlight)
+	{
+		//Get the color state of button
+		ColorBlock colors = slots[index].button.colors;
+		colors.normalColor = normal; colors.highlightedColor = highlight;
 		slots[index].button.colors = colors;
+	}
+
+	bool deleteMode; public void ToggleDeleteMode(Button button) 
+	{
+		deleteMode = !deleteMode;
+		//get the button' color block
+		ColorBlock color = button.colors;
+		ColorBlock swaps = button.colors;
+		if(deleteMode)
+		{
+			//Swap normal and highlight color of button
+			color.normalColor = swaps.highlightedColor;
+			color.highlightedColor = swaps.normalColor;
+			button.colors = color;
+			//Set color for all slot to be delete color
+			for (int s = 0; s < slots.Count; s++) SetSlotColor(s, slotColor.warning, slotColor.delete);
+		}
+		else
+		{
+			color.highlightedColor = swaps.normalColor;
+			color.normalColor = swaps.highlightedColor;
+			button.colors = color;
+			if(Combat.i.rolled)
+			{
+				//Set color for all slot back to be queued color
+				for (int s = 0; s < slots.Count; s++) SetSlotColor(s, slotColor.queued, slotColor.cancel);
+			}
+			else
+			{
+				//Set color for all slot back to be default color
+				for (int s = 0; s < slots.Count; s++) SetSlotColor(s, slotColor.none, slotColor.use);
+			}
+		}
 	}
 #endregion
 }

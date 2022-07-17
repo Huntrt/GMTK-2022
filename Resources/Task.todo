@@ -15,9 +15,8 @@ Mechanic:
 		✓ Static inventory.
 		✓ Dice show in inventory.
 		✓ Show dice info when hover.
-		▪ Option to remove an dice. @doing
+		✓ Option to remove an dice.
 		✓ Select multiple dice in inventory.
-		▪ Dynamic iventory.
 	▪ Dice:
 		✓ Add action to dice.
 		▪ Add punishment to dice.
