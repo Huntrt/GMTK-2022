@@ -12,7 +12,7 @@ public class Combat : MonoBehaviour
 	public bool rolled;
 	public Action onEndTurn;
 	public Sprite[] diceIcon;
-	EnemeyManager em;
+	EnemyManager em;
 	[SerializeField] Vector2 turnIndicatorOffset;
 	[SerializeField] Transform turnIndicator;
 
@@ -21,7 +21,7 @@ public class Combat : MonoBehaviour
 
 	void Start()
 	{
-		em = EnemeyManager.i;
+		em = EnemyManager.i;
 	}
 
 	void Update()
@@ -106,24 +106,43 @@ public class Combat : MonoBehaviour
 
 	public void SwitchTurn(int order)
 	{
+		List<Enemy> enemies = EnemyManager.i.enemies;
 		//? Player turn
 		if(order == 0)
 		{
+			//Active all enemy
+			for (int e = 0; e < enemies.Count; e++) {enemies[e].gameObject.SetActive(true);}
+			//Hide player hurt couter
+			Player.i.hurtCounter.transform.parent.gameObject.SetActive(false);
 			turnIndicator.position = (Vector2)Player.i.transform.position + turnIndicatorOffset;
 		}
 		//? Enemy turn
 		else
 		{
-			List<Enemy> enemies = EnemeyManager.i.enemies;
+			//Display player hurt couter
+			Player.i.hurtCounter.transform.parent.gameObject.SetActive(true);
 			//If the order are past the last enemy
 			if(order > enemies.Count)
 			{
 				//back to the player turn
 				SwitchTurn(0); return;
 			}
-			turnIndicator.position = (Vector2)enemies[order-1].transform.position + turnIndicatorOffset;
+			//Go through all enemy
+			for (int e = 0; e < enemies.Count; e++) 
+			{
+				//Deatice all the hurt display of enemy
+				enemies[e].totalHurtDisplay.transform.parent.gameObject.SetActive(false);
+				//Deactive all of them
+				enemies[e].gameObject.SetActive(false);
+			}
+			//The enemy in this turn
+			Enemy turn = enemies[order-1];
+			//Only actice the enemy got turn
+			turn.gameObject.SetActive(true);
+			//Move indicator to the enemy got turn
+			turnIndicator.position = (Vector2)turn.transform.position + turnIndicatorOffset;
 			//Begin turn of the enemy at given order
-			enemies[order-1].TakeTurn(order);
+			turn.TakeTurn(order);
 		}
 	}
 }

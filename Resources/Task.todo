@@ -2,7 +2,7 @@
 
 Map:
 	✓ An simple square room
-	▪ Grid base
+	X Grid base
 	▪ Spawn 3 door when killed all enemy
 	✓ Enemy Room
 	▪ Horde Room
@@ -11,20 +11,20 @@ Map:
 		▪ Money scaling
 		▪ Sell
 Mechanic:
-	▪ Inventory:
+	✓ Inventory:
 		✓ Static inventory.
 		✓ Dice show in inventory.
 		✓ Show dice info when hover.
 		✓ Option to remove an dice.
 		✓ Select multiple dice in inventory.
-	▪ Dice:
+	✓ Dice:
 		✓ Add action to dice.
-		▪ Add punishment to dice.
-	▪ Rolling:
+		✓ Add punishment to dice.
+	✓ Rolling:
 		✓ Roll an single dice.
 		✓ Stack dice result for action.
 		✓ Roll multiple dice.
-		▪ Punish if fail result.
+		✓ Punish if fail result.
 	✓ Action:
 		✓ Listen and store what player has roll.
 		▪ Perform all the action has stacked:
@@ -32,15 +32,16 @@ Mechanic:
 			▪ Heal
 			▪ Shield
 Entity:
-	▪ Enemy:
+	✓ Enemy:
 		✓ Spawn:
 			✓ Random amount
 			✓ Random position
 			✓ Weight system
 			✓ Scale with difficulty
-			▪ Random in grid
-		▪ Action: @next
-			▪ Attack when full heath
-			▪ Denfensive when low heath
-			▪ Support allies
-			▪ Make it own dice for action
+			X Random in grid
+		✓ Action: @next
+			X Attack when full heath
+			X Denfensive when low heath
+			X Support allies
+			✓ Attack when think good enough.
+			✓ Roll dice as munch as randomized.

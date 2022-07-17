@@ -1,0 +1,9 @@
+
+scaleDamage = How well it damage will scale along with difficulty.
+dices = The dice value the will be use as damage.
+greed = The chance for enemy to roll the dice again (greed/100%).
+initialGreed = The basevalue of greed.
+growthGreed = THow munch greed will be scale each turn.
+
+Damage Calculation: Damage = Roll x (1 + Difficulty)^scaleDamage
+Greed Calculation: Greed = greed + (greed * growthGreed) in each dice rolled

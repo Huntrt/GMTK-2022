@@ -6,7 +6,7 @@ public class Heath : MonoBehaviour
 {
     public int maxHeath, heath;
 	public Action onHurt, onHeal, onDie;
-	public TextMeshProUGUI heathcounter;
+	public TextMeshProUGUI heathCounter;
 	public SpriteRenderer render;
 	public float flashDuration;
 	public Color hurtFlash, healflash; Color defaultColor;
@@ -15,27 +15,25 @@ public class Heath : MonoBehaviour
 	{
 		defaultColor = render.color;
 		heath = maxHeath;
-		heathcounter.text = heath + " / " + maxHeath; 
+		heathCounter.text = heath + " / " + maxHeath; 
 	}
 
 	public void TakeDamage(int damage)
 	{
-		if(damage <= 0) return;
-		heathcounter.text = heath + " / " + maxHeath; 
 		heath -= damage;
 		FlashColor(hurtFlash);
+		heathCounter.text = heath + " / " + maxHeath; 
 		onHurt?.Invoke();
 		if(heath <= 0) {onDie?.Invoke(); Destroy(gameObject);}
 	}
 
 	public void GetHeal(int heal)
 	{
-		if(heal <= 0) return;
-		heathcounter.text = heath + " / " + maxHeath; 
 		heath += heal;
 		FlashColor(healflash);
-		if(heath >= maxHeath) {heath = maxHeath;}
+		heathCounter.text = heath + " / " + maxHeath; 
 		onHeal?.Invoke();
+		if(heath >= maxHeath) {heath = maxHeath;}
 	}
 
 	void FlashColor(Color color)

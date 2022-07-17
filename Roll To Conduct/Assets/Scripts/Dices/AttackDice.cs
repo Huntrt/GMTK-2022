@@ -6,12 +6,12 @@ public class AttackDice : DiceCore
 	public int stackedDamage;
 	public TargetMode targetMode; public enum TargetMode {first, last, random, all}
 	public StackMode stackMode; public enum StackMode {increase, exponentially}
-	EnemeyManager em;
+	EnemyManager em;
 	Combat cm;
 
 	void Start()
 	{
-		em = EnemeyManager.i;
+		em = EnemyManager.i;
 	}
 
     void OnEnable()
@@ -45,15 +45,15 @@ public class AttackDice : DiceCore
 		//? Target
 		if(targetMode == TargetMode.first)
 		{
-			em.enemies[0].AddDamage(stackedDamage);
+			em.enemies[0].AddHurt(stackedDamage);
 		}
 		if(targetMode == TargetMode.last)
 		{
-			em.enemies[em.enemies.Count-1].AddDamage(stackedDamage);
+			em.enemies[em.enemies.Count-1].AddHurt(stackedDamage);
 		}
 		if(targetMode == TargetMode.random)
 		{
-			em.enemies[Random.Range(0,em.enemies.Count)].AddDamage(stackedDamage);
+			em.enemies[Random.Range(0,em.enemies.Count)].AddHurt(stackedDamage);
 		}
 	}
 

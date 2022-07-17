@@ -12,9 +12,9 @@ public class EnemySpawner : MonoBehaviour
 	public List<SpawnInfo> spawns;
 	//% Testing
 	[SerializeField] Transform spawnZone;
-	EnemeyManager em;
+	EnemyManager em;
 
-	void OnEnable() {em = EnemeyManager.i;}
+	void OnEnable() {em = EnemyManager.i;}
 
 	//% Testing
 	void Start()
