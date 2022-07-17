@@ -555,6 +555,12 @@ MonoBehaviour:
   damageQueue: 
   totalDamageWillTake: 0
   totalDamageWillTake_Display: {fileID: 6074642217926838601}
+  attackPrefab: {fileID: 8109511373632847756, guid: b67f7a7757b5a0f48a81b5d70f0c8fa5,
+    type: 3}
+  attackSprite: {fileID: 2314022550564037442, guid: e9f249fb401bd7a45b814fe891af9f00,
+    type: 3}
+  attackHitbox: {x: 0, y: 0}
+  attackVelocity: 5
 --- !u!212 &6904555014493666608
 SpriteRenderer:
   m_ObjectHideFlags: 0

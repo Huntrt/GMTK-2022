@@ -113,6 +113,24 @@ TextureImporter:
   - first:
       213: -1029436229247143400
     second: Icon_Sword
+  - first:
+      213: 9155231472630613657
+    second: Enemy_Rat_Attack
+  - first:
+      213: -6448914520323044390
+    second: Enemy_Slime_Attack
+  - first:
+      213: 8768742673102718018
+    second: Enemy_Skeleton_Attack
+  - first:
+      213: 2314022550564037442
+    second: Enemy_Goblin_Attack
+  - first:
+      213: -4399989721941848498
+    second: Enemy_Mage_Attack
+  - first:
+      213: -1183731428016168853
+    second: Enemy_Ghost_Attack
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -974,7 +992,7 @@ TextureImporter:
         width: 130
         height: 130
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -982,6 +1000,132 @@ TextureImporter:
       bones: []
       spriteID: 8127ec42435b6b1f0800000000000000
       internalID: -1029436229247143400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Rat_Attack
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 160
+        width: 30
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 996cf92948aed0f70800000000000000
+      internalID: 9155231472630613657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Slime_Attack
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 180
+        width: 50
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb494d596ad086a0800000000000000
+      internalID: -6448914520323044390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Skeleton_Attack
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 180
+        width: 60
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 244c81d9005d0b970800000000000000
+      internalID: 8768742673102718018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Goblin_Attack
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 150
+        width: 30
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 243ec90ef3f0d1020800000000000000
+      internalID: 2314022550564037442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Mage_Attack
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 150
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e4948f8a810f2c0800000000000000
+      internalID: -4399989721941848498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Ghost_Attack
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 150
+        width: 50
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6061a3b98a829fe0800000000000000
+      internalID: -1183731428016168853
       vertices: []
       indices: 
       edges: []

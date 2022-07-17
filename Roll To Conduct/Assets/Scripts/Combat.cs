@@ -12,9 +12,17 @@ public class Combat : MonoBehaviour
 	public bool rolled;
 	public Action onEndTurn;
 	public Sprite[] diceIcon;
+	EnemeyManager em;
+	[SerializeField] Vector2 turnIndicatorOffset;
+	[SerializeField] Transform turnIndicator;
 
     //Set this class to singleton
 	public static Combat i {get{if(_i==null){_i = GameObject.FindObjectOfType<Combat>();}return _i;}} static Combat _i;
+
+	void Start()
+	{
+		em = EnemeyManager.i;
+	}
 
 	void Update()
 	{
@@ -91,6 +99,31 @@ public class Combat : MonoBehaviour
 		for (int q = 0; q < queueInterface.childCount; q++)
 		{
 			queueInterface.GetChild(q).GetChild(2).gameObject.SetActive(false);
+		}
+		//Begin switch turn to the frist enemy
+		SwitchTurn(1);
+	}
+
+	public void SwitchTurn(int order)
+	{
+		//? Player turn
+		if(order == 0)
+		{
+			turnIndicator.position = (Vector2)Player.i.transform.position + turnIndicatorOffset;
+		}
+		//? Enemy turn
+		else
+		{
+			List<Enemy> enemies = EnemeyManager.i.enemies;
+			//If the order are past the last enemy
+			if(order > enemies.Count)
+			{
+				//back to the player turn
+				SwitchTurn(0); return;
+			}
+			turnIndicator.position = (Vector2)enemies[order-1].transform.position + turnIndicatorOffset;
+			//Begin turn of the enemy at given order
+			enemies[order-1].TakeTurn(order);
 		}
 	}
 }

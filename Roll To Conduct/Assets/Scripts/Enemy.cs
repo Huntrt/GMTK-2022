@@ -10,9 +10,17 @@ public class Enemy : MonoBehaviour
 	public List<int> damageQueue = new List<int>();
 	public int totalDamageWillTake;
 	public TextMeshProUGUI totalDamageWillTake_Display;
+	Transform playerTF;
+	int turnOrder;
+	[Header("Attack")]
+	[SerializeField] GameObject attackPrefab; GameObject attackInstance;
+	[SerializeField] Sprite attackSprite;
+	[SerializeField] Vector2 attackHitbox;
+	[SerializeField] float attackVelocity;
 
 	void OnEnable()
 	{
+		playerTF = Player.i.transform;
 		Combat.i.onEndTurn += TakeAllDamage;
 		heath.onDie += Die;
 		UpdateDamageTake(false, "");
@@ -23,6 +31,48 @@ public class Enemy : MonoBehaviour
 		if(Combat.i != null) Combat.i.onEndTurn -= TakeAllDamage;
 		if(heath != null) heath.onDie -= Die;
 	}
+
+	void Update()
+	{
+		if(attackInstance != null && attackInstance.activeInHierarchy)
+		{
+			//Get the attack transform
+			Transform atk = attackInstance.transform;
+			//Make attack move toward player
+			atk.position = Vector2.MoveTowards(atk.position, playerTF.position, attackVelocity*Time.deltaTime);
+			if(atk.position == playerTF.position)
+			{
+				print("Dealt Damage To Player");
+				//Deactive the instance
+				attackInstance.SetActive(false);
+				//Go to the next turn
+				NextTurn();
+			}
+		}
+	}
+
+	public void TakeTurn(int order)
+	{
+		turnOrder = order;
+		//Create an new attack instance also set it spritr if have;t
+		if(attackInstance == null)
+		{
+			GameObject attack = Instantiate(attackPrefab, transform.position, Quaternion.identity);
+			attackInstance = attack;
+			attack.GetComponent<SpriteRenderer>().sprite = attackSprite;
+			attack.SetActive(false);
+		}
+		//Reset instance position
+		attackInstance.transform.position = transform.position;
+		//make the instance look toward player
+		attackInstance.transform.up = -Vector3.Normalize(transform.position - playerTF.position);
+		//Active the attack instance
+		attackInstance.SetActive(true);
+	}
+
+	void NextTurn() {Combat.i.SwitchTurn(turnOrder+1);}
+
+#region Take Damage
 
 	public void CallDamage()
 	{
@@ -60,6 +110,8 @@ public class Enemy : MonoBehaviour
 
 	void Die()
 	{
+		Destroy(attackInstance);
 		EnemeyManager.i.enemies.Remove(this);
 	}
+#endregion
 }
