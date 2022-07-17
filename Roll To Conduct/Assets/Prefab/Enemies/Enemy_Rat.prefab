@@ -419,7 +419,7 @@ MonoBehaviour:
   attackSprite: {fileID: 9155231472630613657, guid: e9f249fb401bd7a45b814fe891af9f00,
     type: 3}
   attackHitbox: {x: 0, y: 0}
-  attackVelocity: 5
+  attackVelocity: 50
 --- !u!212 &6191973193303739382
 SpriteRenderer:
   m_ObjectHideFlags: 0
